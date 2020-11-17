@@ -28,7 +28,7 @@ namespace CloudService.Core {
                 _isAllocFlag = false;
                 foreach (var s in Servers) {                   
 
-                    if (s.SumOfBandwidthVM() + vm.Resource.Bandwidth.Size <= _setupCapacityServer.CapacityServer.Bandwidth.Size &&
+                    if (s.SumOfCapacityVM()["bandwidth"] + vm.Resource.Bandwidth.Size <= _setupCapacityServer.CapacityServer.Bandwidth.Size &&
                             s.MaximumCapacity.Cpu.Size <= _setupCapacityServer.CapacityServer.Cpu.Size &&
                                 s.MaximumCapacity.Disk.Size <= _setupCapacityServer.CapacityServer.Disk.Size &&
                                     s.MaximumCapacity.Memory.Size <= _setupCapacityServer.CapacityServer.Memory.Size) { 
