@@ -30,5 +30,27 @@ namespace CloudService.Servers {
             }
             return total;
         }
+
+        public IDictionary<string, int> SumOfCapacityVM() {           
+            int totalBandwidth = 0;
+            int totalCpu = 0;
+            int totalDisk = 0;
+            int totalMemory = 0;
+
+            foreach (var vm in VirtualMachines) {
+                totalBandwidth += vm.Resource.Bandwidth.Size;
+                totalCpu += vm.Resource.Cpu.Size;
+                totalDisk += vm.Resource.Disk.Size;
+                totalMemory += vm.Resource.Memory.Size;
+            }
+            var totalCapacityVM = new Dictionary<string, int>() {
+                { "bandwidth",totalBandwidth }, 
+                { "cpu",totalCpu }, 
+                { "disk",totalDisk }, 
+                { "memory",totalMemory }, 
+            };
+            return totalCapacityVM;
+        }
+
     }
 }
