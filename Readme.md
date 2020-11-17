@@ -26,3 +26,4 @@ dotnet build VirtualMachinePlacement.sln
 cd VirtualMachinePlacement/test/Example
 dotnet run
 ```
+Result
