@@ -27,3 +27,4 @@ cd VirtualMachinePlacement/test/Example
 dotnet run
 ```
 Result
+![alt text](https://github.com/lubisarieff/VirtualMachinePlacement/blob/master/img/vm.png?raw=true)
