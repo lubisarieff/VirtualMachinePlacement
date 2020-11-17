@@ -29,9 +29,9 @@ namespace CloudService.Core {
                 foreach (var s in Servers) {                   
 
                     if (s.SumOfCapacityVM()["bandwidth"] + vm.Resource.Bandwidth.Size <= _setupCapacityServer.CapacityServer.Bandwidth.Size &&
-                            s.MaximumCapacity.Cpu.Size <= _setupCapacityServer.CapacityServer.Cpu.Size &&
-                                s.MaximumCapacity.Disk.Size <= _setupCapacityServer.CapacityServer.Disk.Size &&
-                                    s.MaximumCapacity.Memory.Size <= _setupCapacityServer.CapacityServer.Memory.Size) { 
+                            s.SumOfCapacityVM()["cpu"] + vm.Resource.Cpu.Size <= _setupCapacityServer.CapacityServer.Cpu.Size &&
+                                s.SumOfCapacityVM()["disk"] + vm.Resource.Disk.Size <= _setupCapacityServer.CapacityServer.Disk.Size &&
+                                    s.SumOfCapacityVM()["memory"] + vm.Resource.Memory.Size <= _setupCapacityServer.CapacityServer.Memory.Size) { 
                         s.AddVirtualMachine(vm);
                         
                         _isAllocFlag = true;

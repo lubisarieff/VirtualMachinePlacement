@@ -3,10 +3,11 @@ using System.Collections.Generic;
 
 namespace CloudService.Servers {
     public class Server {
+      
         public string Name { get; init; }
         public ICollection<VirtualMachine> VirtualMachines { get; set; }
         public Resource MaximumCapacity { get; set; }
-
+  
         public Server(string name, Resource maximumCapacity) {
             Name = name;
             MaximumCapacity = maximumCapacity;
@@ -23,14 +24,6 @@ namespace CloudService.Servers {
             return true;
         }
 
-        public int SumOfBandwidthVM() {
-            int total = 0;
-            foreach (var vm in VirtualMachines) {
-                total += vm.Resource.Bandwidth.Size;
-            }
-            return total;
-        }
-
         public IDictionary<string, int> SumOfCapacityVM() {           
             int totalBandwidth = 0;
             int totalCpu = 0;
@@ -43,14 +36,14 @@ namespace CloudService.Servers {
                 totalDisk += vm.Resource.Disk.Size;
                 totalMemory += vm.Resource.Memory.Size;
             }
-            var totalCapacityVM = new Dictionary<string, int>() {
+            var sumOfCapacityVM = new Dictionary<string, int>() {
                 { "bandwidth",totalBandwidth }, 
                 { "cpu",totalCpu }, 
                 { "disk",totalDisk }, 
                 { "memory",totalMemory }, 
             };
-            return totalCapacityVM;
-        }
 
+            return sumOfCapacityVM;
+        }
     }
 }
