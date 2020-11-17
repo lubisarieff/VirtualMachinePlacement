@@ -26,10 +26,9 @@ namespace CloudService.Core {
         public void VMPack() {
             foreach (var vm in _virtualMachines) {
                 _isAllocFlag = false;
-                foreach (var s in Servers) {
-                    SumCapacity(s, vm);
+                foreach (var s in Servers) {                   
 
-                    if (s.MaximumCapacity.Bandwidth.Size <= _setupCapacityServer.CapacityServer.Bandwidth.Size &&
+                    if (s.SumOfBandwidthVM() + vm.Resource.Bandwidth.Size <= _setupCapacityServer.CapacityServer.Bandwidth.Size &&
                             s.MaximumCapacity.Cpu.Size <= _setupCapacityServer.CapacityServer.Cpu.Size &&
                                 s.MaximumCapacity.Disk.Size <= _setupCapacityServer.CapacityServer.Disk.Size &&
                                     s.MaximumCapacity.Memory.Size <= _setupCapacityServer.CapacityServer.Memory.Size) { 
@@ -44,13 +43,7 @@ namespace CloudService.Core {
                     AddServer(vm);
             }
         }
-
-        private void SumCapacity(Server s, VirtualMachine vm) {
-            s.MaximumCapacity.Bandwidth.Size += vm.Resource.Bandwidth.Size;
-            s.MaximumCapacity.Cpu.Size += vm.Resource.Cpu.Size;
-            s.MaximumCapacity.Disk.Size += vm.Resource.Disk.Size;
-            s.MaximumCapacity.Memory.Size += vm.Resource.Memory.Size;            
-        }
+       
 
         private void AddServer(VirtualMachine vm) {
             Servers.Add(new Server($"server-{Servers.Count + 1}", new Resource {

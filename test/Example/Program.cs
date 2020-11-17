@@ -7,7 +7,7 @@ namespace Example {
     class Program {
         static void Main(string[] args) {
             //setting jumlah virtual machine
-            var resourceManager = new ResourceManagerVM(4);
+            var resourceManager = new ResourceManagerVM(10);
             //generate random virtual machine
             resourceManager.CreateRandomVirtualMachine();
 
@@ -16,7 +16,7 @@ namespace Example {
             }
 
             //setting nilai maximum untuk capasitas sebuah server
-            var setupServer = new SetupCapacityServer(new Bandwidth(200), new Cpu(16), new Disk(1000), new Memory(8));
+            var setupServer = new SetupCapacityServer(new Bandwidth(500), new Cpu(16), new Disk(1000), new Memory(8));
             Console.WriteLine();
             Console.WriteLine($"Maximum Capacity Server : [{setupServer.CapacityServer.Cpu}, {setupServer.CapacityServer.Memory}, {setupServer.CapacityServer.Disk}, {setupServer.CapacityServer.Bandwidth}]");
 

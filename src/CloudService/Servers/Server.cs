@@ -22,5 +22,13 @@ namespace CloudService.Servers {
             VirtualMachines.Remove(virtualMachine);
             return true;
         }
+
+        public int SumOfBandwidthVM() {
+            int total = 0;
+            foreach (var vm in VirtualMachines) {
+                total += vm.Resource.Bandwidth.Size;
+            }
+            return total;
+        }
     }
 }
